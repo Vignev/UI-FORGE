@@ -3,7 +3,16 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Button, ThemeProvider } from '@ui-forge/react';
 import '../../../.storybook/styles.css';
 
-const meta = {
+interface ButtonStoryArgs {
+  label: string;
+  variant: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
+  size: 'sm' | 'md' | 'lg';
+  disabled: boolean;
+  loading: boolean;
+  fullWidth: boolean;
+}
+
+const meta: Meta<ButtonStoryArgs> = {
   title: 'React/Components/Button',
   component: Button,
   parameters: {
@@ -17,67 +26,104 @@ const meta = {
       </ThemeProvider>
     ),
   ],
+  args: {
+    label: 'Button',
+    variant: 'primary',
+    size: 'md',
+    disabled: false,
+    loading: false,
+    fullWidth: false,
+  },
   argTypes: {
+    label: {
+      control: 'text',
+      description: 'The text content of the button',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Button' },
+      },
+    },
     variant: {
       control: 'select',
       options: ['primary', 'secondary', 'outline', 'ghost', 'danger'],
       description: 'The visual style of the button',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'primary' },
+      },
     },
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
       description: 'The size of the button',
-    },
-    fullWidth: {
-      control: 'boolean',
-      description: 'Whether the button should take full width',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'md' },
+      },
     },
     disabled: {
       control: 'boolean',
       description: 'Whether the button is disabled',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     loading: {
       control: 'boolean',
       description: 'Whether the button is in loading state',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    fullWidth: {
+      control: 'boolean',
+      description: 'Whether the button should take full width',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
   },
-} satisfies Meta<typeof Button>;
+  render: ({ label, ...args }) => <Button {...args}>{label}</Button>,
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<ButtonStoryArgs>;
 
 // Basic variants
 export const Primary: Story = {
   args: {
-    children: 'Primary Button',
+    label: 'Primary Button',
     variant: 'primary',
   },
 };
 
 export const Secondary: Story = {
   args: {
-    children: 'Secondary Button',
+    label: 'Secondary Button',
     variant: 'secondary',
   },
 };
 
 export const Outline: Story = {
   args: {
-    children: 'Outline Button',
+    label: 'Outline Button',
     variant: 'outline',
   },
 };
 
 export const Ghost: Story = {
   args: {
-    children: 'Ghost Button',
+    label: 'Ghost Button',
     variant: 'ghost',
   },
 };
 
 export const Danger: Story = {
   args: {
-    children: 'Danger Button',
+    label: 'Danger Button',
     variant: 'danger',
   },
 };
@@ -85,21 +131,21 @@ export const Danger: Story = {
 // Sizes
 export const Small: Story = {
   args: {
-    children: 'Small Button',
+    label: 'Small Button',
     size: 'sm',
   },
 };
 
 export const Medium: Story = {
   args: {
-    children: 'Medium Button',
+    label: 'Medium Button',
     size: 'md',
   },
 };
 
 export const Large: Story = {
   args: {
-    children: 'Large Button',
+    label: 'Large Button',
     size: 'lg',
   },
 };
@@ -107,14 +153,14 @@ export const Large: Story = {
 // States
 export const Disabled: Story = {
   args: {
-    children: 'Disabled Button',
+    label: 'Disabled Button',
     disabled: true,
   },
 };
 
 export const Loading: Story = {
   args: {
-    children: 'Loading Button',
+    label: 'Loading Button',
     loading: true,
   },
 };
@@ -122,7 +168,7 @@ export const Loading: Story = {
 // Full width
 export const FullWidth: Story = {
   args: {
-    children: 'Full Width Button',
+    label: 'Full Width Button',
     fullWidth: true,
   },
   parameters: {
@@ -133,42 +179,67 @@ export const FullWidth: Story = {
 // With icons
 export const WithStartIcon: Story = {
   args: {
-    children: 'Next',
-    startIcon: (
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-      >
-        <path d="M5 12h14M12 5l7 7-7 7" />
-      </svg>
-    ),
+    label: 'Next',
+    variant: 'primary',
   },
+  render: ({ label, ...args }) => (
+    <Button
+      {...args}
+      startIcon={
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      }
+    >
+      {label}
+    </Button>
+  ),
 };
 
 export const WithEndIcon: Story = {
   args: {
-    children: 'Back',
+    label: 'Back',
     variant: 'secondary',
-    endIcon: (
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-      >
-        <path d="M19 12H5M12 19l-7-7 7-7" />
-      </svg>
-    ),
   },
+  render: ({ label, ...args }) => (
+    <Button
+      {...args}
+      endIcon={
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+      }
+    >
+      {label}
+    </Button>
+  ),
 };
 
-// All variants showcase
+export const WithBothIcons: Story = {
+  args: {
+    label: 'Download',
+    variant: 'outline',
+  },
+  render: ({ label, ...args }) => (
+    <Button
+      {...args}
+      startIcon={
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+        </svg>
+      }
+      endIcon={
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      }
+    >
+      {label}
+    </Button>
+  ),
+};
+
+// Showcase stories
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -184,7 +255,6 @@ export const AllVariants: Story = {
   },
 };
 
-// All sizes showcase
 export const AllSizes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>

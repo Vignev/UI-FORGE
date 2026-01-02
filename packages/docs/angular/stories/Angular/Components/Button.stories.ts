@@ -2,7 +2,16 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { ButtonComponent } from '@ui-forge/angular';
 
-const meta: Meta<ButtonComponent> = {
+interface ButtonStoryArgs {
+  label: string;
+  variant: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
+  size: 'sm' | 'md' | 'lg';
+  disabled: boolean;
+  loading: boolean;
+  fullWidth: boolean;
+}
+
+const meta: Meta<ButtonStoryArgs> = {
   title: 'Angular/Components/Button',
   component: ButtonComponent,
   decorators: [
@@ -14,11 +23,27 @@ const meta: Meta<ButtonComponent> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  args: {
+    label: 'Button',
+    variant: 'primary',
+    size: 'md',
+    disabled: false,
+    loading: false,
+    fullWidth: false,
+  },
   argTypes: {
+    label: {
+      control: 'text',
+      description: 'The text content of the button',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Button' },
+      },
+    },
     variant: {
       control: 'select',
       options: ['primary', 'secondary', 'outline', 'ghost', 'danger'],
-      description: 'The visual style variant of the button',
+      description: 'The visual style of the button',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'primary' },
@@ -58,19 +83,6 @@ const meta: Meta<ButtonComponent> = {
       },
     },
   },
-};
-
-export default meta;
-type Story = StoryObj<ButtonComponent>;
-
-export const Primary: Story = {
-  args: {
-    variant: 'primary',
-    size: 'md',
-    disabled: false,
-    loading: false,
-    fullWidth: false,
-  },
   render: (args) => ({
     props: args,
     template: `<uif-button
@@ -79,190 +91,94 @@ export const Primary: Story = {
       [disabled]="disabled"
       [loading]="loading"
       [fullWidth]="fullWidth"
-    >
-      Primary Button
-    </uif-button>`,
+    >{{ label }}</uif-button>`,
   }),
+};
+
+export default meta;
+type Story = StoryObj<ButtonStoryArgs>;
+
+// Basic variants
+export const Primary: Story = {
+  args: {
+    label: 'Primary Button',
+    variant: 'primary',
+  },
 };
 
 export const Secondary: Story = {
   args: {
+    label: 'Secondary Button',
     variant: 'secondary',
-    size: 'md',
   },
-  render: (args) => ({
-    props: args,
-    template: `<uif-button
-      [variant]="variant"
-      [size]="size"
-      [disabled]="disabled"
-      [loading]="loading"
-      [fullWidth]="fullWidth"
-    >
-      Secondary Button
-    </uif-button>`,
-  }),
 };
 
 export const Outline: Story = {
   args: {
+    label: 'Outline Button',
     variant: 'outline',
-    size: 'md',
   },
-  render: (args) => ({
-    props: args,
-    template: `<uif-button
-      [variant]="variant"
-      [size]="size"
-      [disabled]="disabled"
-      [loading]="loading"
-      [fullWidth]="fullWidth"
-    >
-      Outline Button
-    </uif-button>`,
-  }),
 };
 
 export const Ghost: Story = {
   args: {
+    label: 'Ghost Button',
     variant: 'ghost',
-    size: 'md',
   },
-  render: (args) => ({
-    props: args,
-    template: `<uif-button
-      [variant]="variant"
-      [size]="size"
-      [disabled]="disabled"
-      [loading]="loading"
-      [fullWidth]="fullWidth"
-    >
-      Ghost Button
-    </uif-button>`,
-  }),
 };
 
 export const Danger: Story = {
   args: {
+    label: 'Danger Button',
     variant: 'danger',
-    size: 'md',
   },
-  render: (args) => ({
-    props: args,
-    template: `<uif-button
-      [variant]="variant"
-      [size]="size"
-      [disabled]="disabled"
-      [loading]="loading"
-      [fullWidth]="fullWidth"
-    >
-      Danger Button
-    </uif-button>`,
-  }),
 };
 
+// Sizes
 export const Small: Story = {
   args: {
-    variant: 'primary',
+    label: 'Small Button',
     size: 'sm',
   },
-  render: (args) => ({
-    props: args,
-    template: `<uif-button
-      [variant]="variant"
-      [size]="size"
-      [disabled]="disabled"
-      [loading]="loading"
-      [fullWidth]="fullWidth"
-    >
-      Small Button
-    </uif-button>`,
-  }),
 };
 
 export const Medium: Story = {
   args: {
-    variant: 'primary',
+    label: 'Medium Button',
     size: 'md',
   },
-  render: (args) => ({
-    props: args,
-    template: `<uif-button
-      [variant]="variant"
-      [size]="size"
-      [disabled]="disabled"
-      [loading]="loading"
-      [fullWidth]="fullWidth"
-    >
-      Medium Button
-    </uif-button>`,
-  }),
 };
 
 export const Large: Story = {
   args: {
-    variant: 'primary',
+    label: 'Large Button',
     size: 'lg',
   },
-  render: (args) => ({
-    props: args,
-    template: `<uif-button
-      [variant]="variant"
-      [size]="size"
-      [disabled]="disabled"
-      [loading]="loading"
-      [fullWidth]="fullWidth"
-    >
-      Large Button
-    </uif-button>`,
-  }),
 };
 
+// States
 export const Disabled: Story = {
   args: {
-    variant: 'primary',
-    size: 'md',
+    label: 'Disabled Button',
     disabled: true,
   },
-  render: (args) => ({
-    props: args,
-    template: `<uif-button
-      [variant]="variant"
-      [size]="size"
-      [disabled]="disabled"
-      [loading]="loading"
-      [fullWidth]="fullWidth"
-    >
-      Disabled Button
-    </uif-button>`,
-  }),
 };
 
 export const Loading: Story = {
   args: {
-    variant: 'primary',
-    size: 'md',
+    label: 'Loading Button',
     loading: true,
   },
-  render: (args) => ({
-    props: args,
-    template: `<uif-button
-      [variant]="variant"
-      [size]="size"
-      [disabled]="disabled"
-      [loading]="loading"
-      [fullWidth]="fullWidth"
-    >
-      Loading Button
-    </uif-button>`,
-  }),
 };
 
+// Full width
 export const FullWidth: Story = {
   args: {
-    variant: 'primary',
-    size: 'md',
+    label: 'Full Width Button',
     fullWidth: true,
+  },
+  parameters: {
+    layout: 'padded',
   },
   render: (args) => ({
     props: args,
@@ -273,17 +189,16 @@ export const FullWidth: Story = {
         [disabled]="disabled"
         [loading]="loading"
         [fullWidth]="fullWidth"
-      >
-        Full Width Button
-      </uif-button>
+      >{{ label }}</uif-button>
     </div>`,
   }),
 };
 
-export const WithIcon: Story = {
+// With icons
+export const WithStartIcon: Story = {
   args: {
+    label: 'Next',
     variant: 'primary',
-    size: 'md',
   },
   render: (args) => ({
     props: args,
@@ -294,34 +209,90 @@ export const WithIcon: Story = {
       [loading]="loading"
       [fullWidth]="fullWidth"
     >
-      <span class="mr-2">✓</span>
-      Button with Icon
+      <svg startIcon width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+      {{ label }}
     </uif-button>`,
   }),
 };
 
+export const WithEndIcon: Story = {
+  args: {
+    label: 'Back',
+    variant: 'secondary',
+  },
+  render: (args) => ({
+    props: args,
+    template: `<uif-button
+      [variant]="variant"
+      [size]="size"
+      [disabled]="disabled"
+      [loading]="loading"
+      [fullWidth]="fullWidth"
+    >
+      {{ label }}
+      <svg endIcon width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+    </uif-button>`,
+  }),
+};
+
+export const WithBothIcons: Story = {
+  args: {
+    label: 'Download',
+    variant: 'outline',
+  },
+  render: (args) => ({
+    props: args,
+    template: `<uif-button
+      [variant]="variant"
+      [size]="size"
+      [disabled]="disabled"
+      [loading]="loading"
+      [fullWidth]="fullWidth"
+    >
+      <svg startIcon width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+      </svg>
+      {{ label }}
+      <svg endIcon width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 9l6 6 6-6" />
+      </svg>
+    </uif-button>`,
+  }),
+};
+
+// Showcase stories
 export const AllVariants: Story = {
   render: () => ({
     template: `
       <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
-        <uif-button variant="primary" size="md">Primary</uif-button>
-        <uif-button variant="secondary" size="md">Secondary</uif-button>
-        <uif-button variant="outline" size="md">Outline</uif-button>
-        <uif-button variant="ghost" size="md">Ghost</uif-button>
-        <uif-button variant="danger" size="md">Danger</uif-button>
+        <uif-button variant="primary">Primary</uif-button>
+        <uif-button variant="secondary">Secondary</uif-button>
+        <uif-button variant="outline">Outline</uif-button>
+        <uif-button variant="ghost">Ghost</uif-button>
+        <uif-button variant="danger">Danger</uif-button>
       </div>
     `,
   }),
+  parameters: {
+    layout: 'padded',
+  },
 };
 
 export const AllSizes: Story = {
   render: () => ({
     template: `
       <div style="display: flex; gap: 1rem; align-items: center;">
-        <uif-button variant="primary" size="sm">Small</uif-button>
-        <uif-button variant="primary" size="md">Medium</uif-button>
-        <uif-button variant="primary" size="lg">Large</uif-button>
+        <uif-button size="sm">Small</uif-button>
+        <uif-button size="md">Medium</uif-button>
+        <uif-button size="lg">Large</uif-button>
       </div>
     `,
   }),
+  parameters: {
+    layout: 'padded',
+  },
 };

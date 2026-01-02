@@ -4,7 +4,8 @@
 
 import { Injectable, signal, effect, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import type { Theme } from '@ui-forge/tokens';
+
+export type Theme = 'light' | 'dark';
 
 @Injectable({
   providedIn: 'root',

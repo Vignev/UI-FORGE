@@ -1,11 +1,18 @@
 /**
  * Button Component
  * A versatile button component with multiple variants and sizes
+ *
+ * Theming: Override CSS variables in your app to customize colors.
  */
 
 import React, { forwardRef } from 'react';
-import { cn } from '@ui-forge/core';
 import { buttonVariants, type ButtonVariants } from './Button.variants';
+import './Button.css';
+
+// Simple className concatenation utility
+function cn(...classes: (string | undefined | null | false)[]): string {
+  return classes.filter(Boolean).join(' ');
+}
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -69,14 +76,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {loading && (
           <svg
-            className="mr-2 h-4 w-4 animate-spin"
+            className="uif-btn-spinner"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             aria-hidden="true"
           >
             <circle
-              className="opacity-25"
+              style={{ opacity: 0.25 }}
               cx="12"
               cy="12"
               r="10"
@@ -84,15 +91,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               strokeWidth="4"
             />
             <path
-              className="opacity-75"
+              style={{ opacity: 0.75 }}
               fill="currentColor"
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             />
           </svg>
         )}
-        {!loading && startIcon && <span className="mr-2">{startIcon}</span>}
+        {!loading && startIcon && <span className="uif-btn-icon-start">{startIcon}</span>}
         {children}
-        {!loading && endIcon && <span className="ml-2">{endIcon}</span>}
+        {!loading && endIcon && <span className="uif-btn-icon-end">{endIcon}</span>}
       </button>
     );
   }

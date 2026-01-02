@@ -1,0 +1,826 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction/Theming" />
+
+# Theming
+
+UI Forge uses CSS custom properties (CSS variables) for theming, making it easy to customize the look and feel of all components. Simply override the variables in your application's CSS to create your own theme.
+
+## Getting Started
+
+Import the base styles from UI Forge, then override any CSS variables in your application:
+
+```typescript
+// angular.json
+{
+  "styles": [
+    "node_modules/@ui-forge/angular/styles/ui-forge.css",
+    "src/styles.css"
+  ]
+}
+```
+
+```css
+/* styles.css */
+:root {
+  --uif-primary: #8b5cf6;
+  --uif-primary-hover: #7c3aed;
+}
+```
+
+---
+
+## Color System
+
+### Brand Colors
+
+Primary colors are used for main actions, links, and focus states.
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-primary</code></td><td>Primary brand color</td><td><code>#3b82f6</code></td></tr>
+    <tr><td><code>--uif-primary-hover</code></td><td>Primary hover state</td><td><code>#2563eb</code></td></tr>
+    <tr><td><code>--uif-primary-active</code></td><td>Primary active/pressed state</td><td><code>#1d4ed8</code></td></tr>
+    <tr><td><code>--uif-primary-text</code></td><td>Text on primary background</td><td><code>#ffffff</code></td></tr>
+  </tbody>
+</table>
+
+Secondary colors are used for secondary actions and less prominent UI elements.
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-secondary</code></td><td>Secondary background</td><td><code>#e5e7eb</code></td></tr>
+    <tr><td><code>--uif-secondary-hover</code></td><td>Secondary hover state</td><td><code>#d1d5db</code></td></tr>
+    <tr><td><code>--uif-secondary-active</code></td><td>Secondary active state</td><td><code>#9ca3af</code></td></tr>
+    <tr><td><code>--uif-secondary-text</code></td><td>Text on secondary background</td><td><code>#1f2937</code></td></tr>
+  </tbody>
+</table>
+
+### Semantic Colors
+
+Semantic colors communicate meaning and status.
+
+#### Success
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-success</code></td><td>Success state background</td><td><code>#22c55e</code></td></tr>
+    <tr><td><code>--uif-success-hover</code></td><td>Success hover state</td><td><code>#16a34a</code></td></tr>
+    <tr><td><code>--uif-success-light</code></td><td>Light success background</td><td><code>#dcfce7</code></td></tr>
+    <tr><td><code>--uif-success-text</code></td><td>Text on success background</td><td><code>#ffffff</code></td></tr>
+  </tbody>
+</table>
+
+#### Warning
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-warning</code></td><td>Warning state background</td><td><code>#f59e0b</code></td></tr>
+    <tr><td><code>--uif-warning-hover</code></td><td>Warning hover state</td><td><code>#d97706</code></td></tr>
+    <tr><td><code>--uif-warning-light</code></td><td>Light warning background</td><td><code>#fef3c7</code></td></tr>
+    <tr><td><code>--uif-warning-text</code></td><td>Text on warning background</td><td><code>#ffffff</code></td></tr>
+  </tbody>
+</table>
+
+#### Danger / Error
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-danger</code></td><td>Danger/error state background</td><td><code>#ef4444</code></td></tr>
+    <tr><td><code>--uif-danger-hover</code></td><td>Danger hover state</td><td><code>#dc2626</code></td></tr>
+    <tr><td><code>--uif-danger-light</code></td><td>Light danger background</td><td><code>#fee2e2</code></td></tr>
+    <tr><td><code>--uif-danger-text</code></td><td>Text on danger background</td><td><code>#ffffff</code></td></tr>
+  </tbody>
+</table>
+
+#### Info
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-info</code></td><td>Info state background</td><td><code>#3b82f6</code></td></tr>
+    <tr><td><code>--uif-info-hover</code></td><td>Info hover state</td><td><code>#2563eb</code></td></tr>
+    <tr><td><code>--uif-info-light</code></td><td>Light info background</td><td><code>#dbeafe</code></td></tr>
+    <tr><td><code>--uif-info-text</code></td><td>Text on info background</td><td><code>#ffffff</code></td></tr>
+  </tbody>
+</table>
+
+### Neutral Colors
+
+Neutral colors for text, backgrounds, and borders.
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-background</code></td><td>Page background</td><td><code>#ffffff</code></td></tr>
+    <tr><td><code>--uif-surface</code></td><td>Card/elevated surface background</td><td><code>#ffffff</code></td></tr>
+    <tr><td><code>--uif-surface-hover</code></td><td>Surface hover state</td><td><code>#f9fafb</code></td></tr>
+    <tr><td><code>--uif-text-primary</code></td><td>Primary text color</td><td><code>#111827</code></td></tr>
+    <tr><td><code>--uif-text-secondary</code></td><td>Secondary/muted text</td><td><code>#6b7280</code></td></tr>
+    <tr><td><code>--uif-text-disabled</code></td><td>Disabled text</td><td><code>#9ca3af</code></td></tr>
+    <tr><td><code>--uif-border</code></td><td>Default border color</td><td><code>#e5e7eb</code></td></tr>
+    <tr><td><code>--uif-border-hover</code></td><td>Border hover color</td><td><code>#d1d5db</code></td></tr>
+    <tr><td><code>--uif-divider</code></td><td>Divider/separator color</td><td><code>#e5e7eb</code></td></tr>
+  </tbody>
+</table>
+
+### Dark Mode Colors
+
+Dark mode variants are automatically applied when `[data-theme="dark"]` is set.
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-background-dark</code></td><td>Dark mode background</td><td><code>#111827</code></td></tr>
+    <tr><td><code>--uif-surface-dark</code></td><td>Dark mode surface</td><td><code>#1f2937</code></td></tr>
+    <tr><td><code>--uif-surface-hover-dark</code></td><td>Dark mode surface hover</td><td><code>#374151</code></td></tr>
+    <tr><td><code>--uif-text-primary-dark</code></td><td>Dark mode primary text</td><td><code>#f9fafb</code></td></tr>
+    <tr><td><code>--uif-text-secondary-dark</code></td><td>Dark mode secondary text</td><td><code>#9ca3af</code></td></tr>
+    <tr><td><code>--uif-border-dark</code></td><td>Dark mode border</td><td><code>#374151</code></td></tr>
+    <tr><td><code>--uif-divider-dark</code></td><td>Dark mode divider</td><td><code>#374151</code></td></tr>
+  </tbody>
+</table>
+
+---
+
+## Typography
+
+### Font Families
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-font-family</code></td><td>Primary font family</td><td><code>'Inter', ui-sans-serif, system-ui, sans-serif</code></td></tr>
+    <tr><td><code>--uif-font-family-mono</code></td><td>Monospace font family</td><td><code>ui-monospace, monospace</code></td></tr>
+    <tr><td><code>--uif-font-family-heading</code></td><td>Heading font family</td><td><code>var(--uif-font-family)</code></td></tr>
+  </tbody>
+</table>
+
+### Font Sizes
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-text-xs</code></td><td>Extra small text</td><td><code>0.75rem</code></td></tr>
+    <tr><td><code>--uif-text-sm</code></td><td>Small text</td><td><code>0.875rem</code></td></tr>
+    <tr><td><code>--uif-text-base</code></td><td>Base text size</td><td><code>1rem</code></td></tr>
+    <tr><td><code>--uif-text-lg</code></td><td>Large text</td><td><code>1.125rem</code></td></tr>
+    <tr><td><code>--uif-text-xl</code></td><td>Extra large text</td><td><code>1.25rem</code></td></tr>
+    <tr><td><code>--uif-text-2xl</code></td><td>2x large text</td><td><code>1.5rem</code></td></tr>
+    <tr><td><code>--uif-text-3xl</code></td><td>3x large text</td><td><code>1.875rem</code></td></tr>
+    <tr><td><code>--uif-text-4xl</code></td><td>4x large text</td><td><code>2.25rem</code></td></tr>
+  </tbody>
+</table>
+
+### Font Weights
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-font-normal</code></td><td>Normal weight</td><td><code>400</code></td></tr>
+    <tr><td><code>--uif-font-medium</code></td><td>Medium weight</td><td><code>500</code></td></tr>
+    <tr><td><code>--uif-font-semibold</code></td><td>Semibold weight</td><td><code>600</code></td></tr>
+    <tr><td><code>--uif-font-bold</code></td><td>Bold weight</td><td><code>700</code></td></tr>
+  </tbody>
+</table>
+
+### Line Heights
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-leading-none</code></td><td>No line height</td><td><code>1</code></td></tr>
+    <tr><td><code>--uif-leading-tight</code></td><td>Tight line height</td><td><code>1.25</code></td></tr>
+    <tr><td><code>--uif-leading-normal</code></td><td>Normal line height</td><td><code>1.5</code></td></tr>
+    <tr><td><code>--uif-leading-relaxed</code></td><td>Relaxed line height</td><td><code>1.625</code></td></tr>
+    <tr><td><code>--uif-leading-loose</code></td><td>Loose line height</td><td><code>2</code></td></tr>
+  </tbody>
+</table>
+
+---
+
+## Spacing
+
+Consistent spacing scale used throughout the design system.
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-spacing-0</code></td><td>No spacing</td><td><code>0</code></td></tr>
+    <tr><td><code>--uif-spacing-1</code></td><td>4px spacing</td><td><code>0.25rem</code></td></tr>
+    <tr><td><code>--uif-spacing-2</code></td><td>8px spacing</td><td><code>0.5rem</code></td></tr>
+    <tr><td><code>--uif-spacing-3</code></td><td>12px spacing</td><td><code>0.75rem</code></td></tr>
+    <tr><td><code>--uif-spacing-4</code></td><td>16px spacing</td><td><code>1rem</code></td></tr>
+    <tr><td><code>--uif-spacing-5</code></td><td>20px spacing</td><td><code>1.25rem</code></td></tr>
+    <tr><td><code>--uif-spacing-6</code></td><td>24px spacing</td><td><code>1.5rem</code></td></tr>
+    <tr><td><code>--uif-spacing-8</code></td><td>32px spacing</td><td><code>2rem</code></td></tr>
+    <tr><td><code>--uif-spacing-10</code></td><td>40px spacing</td><td><code>2.5rem</code></td></tr>
+    <tr><td><code>--uif-spacing-12</code></td><td>48px spacing</td><td><code>3rem</code></td></tr>
+    <tr><td><code>--uif-spacing-16</code></td><td>64px spacing</td><td><code>4rem</code></td></tr>
+  </tbody>
+</table>
+
+---
+
+## Border Radius
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-radius-none</code></td><td>No radius</td><td><code>0</code></td></tr>
+    <tr><td><code>--uif-radius-sm</code></td><td>Small radius</td><td><code>0.125rem</code></td></tr>
+    <tr><td><code>--uif-radius-md</code></td><td>Medium radius</td><td><code>0.375rem</code></td></tr>
+    <tr><td><code>--uif-radius-lg</code></td><td>Large radius</td><td><code>0.5rem</code></td></tr>
+    <tr><td><code>--uif-radius-xl</code></td><td>Extra large radius</td><td><code>0.75rem</code></td></tr>
+    <tr><td><code>--uif-radius-2xl</code></td><td>2x large radius</td><td><code>1rem</code></td></tr>
+    <tr><td><code>--uif-radius-full</code></td><td>Full/pill radius</td><td><code>9999px</code></td></tr>
+  </tbody>
+</table>
+
+---
+
+## Shadows
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-shadow-sm</code></td><td>Small shadow</td><td><code>0 1px 2px 0 rgb(0 0 0 / 0.05)</code></td></tr>
+    <tr><td><code>--uif-shadow-md</code></td><td>Medium shadow</td><td><code>0 4px 6px -1px rgb(0 0 0 / 0.1)</code></td></tr>
+    <tr><td><code>--uif-shadow-lg</code></td><td>Large shadow</td><td><code>0 10px 15px -3px rgb(0 0 0 / 0.1)</code></td></tr>
+    <tr><td><code>--uif-shadow-xl</code></td><td>Extra large shadow</td><td><code>0 20px 25px -5px rgb(0 0 0 / 0.1)</code></td></tr>
+    <tr><td><code>--uif-shadow-inner</code></td><td>Inner shadow</td><td><code>inset 0 2px 4px 0 rgb(0 0 0 / 0.05)</code></td></tr>
+    <tr><td><code>--uif-shadow-none</code></td><td>No shadow</td><td><code>none</code></td></tr>
+  </tbody>
+</table>
+
+---
+
+## Transitions
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-transition-fast</code></td><td>Fast transition</td><td><code>150ms</code></td></tr>
+    <tr><td><code>--uif-transition-normal</code></td><td>Normal transition</td><td><code>200ms</code></td></tr>
+    <tr><td><code>--uif-transition-slow</code></td><td>Slow transition</td><td><code>300ms</code></td></tr>
+    <tr><td><code>--uif-ease-default</code></td><td>Default easing</td><td><code>cubic-bezier(0.4, 0, 0.2, 1)</code></td></tr>
+    <tr><td><code>--uif-ease-in</code></td><td>Ease in</td><td><code>cubic-bezier(0.4, 0, 1, 1)</code></td></tr>
+    <tr><td><code>--uif-ease-out</code></td><td>Ease out</td><td><code>cubic-bezier(0, 0, 0.2, 1)</code></td></tr>
+    <tr><td><code>--uif-ease-in-out</code></td><td>Ease in-out</td><td><code>cubic-bezier(0.4, 0, 0.2, 1)</code></td></tr>
+  </tbody>
+</table>
+
+---
+
+## Z-Index Scale
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-z-base</code></td><td>Base level</td><td><code>0</code></td></tr>
+    <tr><td><code>--uif-z-dropdown</code></td><td>Dropdowns</td><td><code>1000</code></td></tr>
+    <tr><td><code>--uif-z-sticky</code></td><td>Sticky elements</td><td><code>1020</code></td></tr>
+    <tr><td><code>--uif-z-fixed</code></td><td>Fixed elements</td><td><code>1030</code></td></tr>
+    <tr><td><code>--uif-z-modal-backdrop</code></td><td>Modal backdrop</td><td><code>1040</code></td></tr>
+    <tr><td><code>--uif-z-modal</code></td><td>Modal content</td><td><code>1050</code></td></tr>
+    <tr><td><code>--uif-z-popover</code></td><td>Popovers</td><td><code>1060</code></td></tr>
+    <tr><td><code>--uif-z-tooltip</code></td><td>Tooltips</td><td><code>1070</code></td></tr>
+    <tr><td><code>--uif-z-toast</code></td><td>Toast notifications</td><td><code>1080</code></td></tr>
+  </tbody>
+</table>
+
+---
+
+## Component Variables
+
+### Button
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-btn-font-weight</code></td><td>Button font weight</td><td><code>500</code></td></tr>
+    <tr><td><code>--uif-btn-radius</code></td><td>Button border radius</td><td><code>var(--uif-radius-md)</code></td></tr>
+    <tr><td><code>--uif-btn-transition</code></td><td>Button transition</td><td><code>var(--uif-transition-fast)</code></td></tr>
+    <tr><td><code>--uif-btn-focus-ring</code></td><td>Focus ring color</td><td><code>var(--uif-primary)</code></td></tr>
+    <tr><td><code>--uif-btn-focus-ring-offset</code></td><td>Focus ring offset</td><td><code>2px</code></td></tr>
+    <tr><td><code>--uif-btn-disabled-opacity</code></td><td>Disabled opacity</td><td><code>0.5</code></td></tr>
+  </tbody>
+</table>
+
+**Button Sizes:**
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-btn-height-sm</code></td><td>Small button height</td><td><code>2rem</code></td></tr>
+    <tr><td><code>--uif-btn-height-md</code></td><td>Medium button height</td><td><code>2.5rem</code></td></tr>
+    <tr><td><code>--uif-btn-height-lg</code></td><td>Large button height</td><td><code>3rem</code></td></tr>
+    <tr><td><code>--uif-btn-padding-x-sm</code></td><td>Small horizontal padding</td><td><code>0.75rem</code></td></tr>
+    <tr><td><code>--uif-btn-padding-x-md</code></td><td>Medium horizontal padding</td><td><code>1rem</code></td></tr>
+    <tr><td><code>--uif-btn-padding-x-lg</code></td><td>Large horizontal padding</td><td><code>1.5rem</code></td></tr>
+    <tr><td><code>--uif-btn-font-size-sm</code></td><td>Small font size</td><td><code>0.875rem</code></td></tr>
+    <tr><td><code>--uif-btn-font-size-md</code></td><td>Medium font size</td><td><code>1rem</code></td></tr>
+    <tr><td><code>--uif-btn-font-size-lg</code></td><td>Large font size</td><td><code>1.125rem</code></td></tr>
+  </tbody>
+</table>
+
+### Input
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-input-bg</code></td><td>Input background</td><td><code>var(--uif-background)</code></td></tr>
+    <tr><td><code>--uif-input-border</code></td><td>Input border color</td><td><code>var(--uif-border)</code></td></tr>
+    <tr><td><code>--uif-input-border-focus</code></td><td>Input focus border</td><td><code>var(--uif-primary)</code></td></tr>
+    <tr><td><code>--uif-input-radius</code></td><td>Input border radius</td><td><code>var(--uif-radius-md)</code></td></tr>
+    <tr><td><code>--uif-input-text</code></td><td>Input text color</td><td><code>var(--uif-text-primary)</code></td></tr>
+    <tr><td><code>--uif-input-placeholder</code></td><td>Placeholder color</td><td><code>var(--uif-text-secondary)</code></td></tr>
+    <tr><td><code>--uif-input-disabled-bg</code></td><td>Disabled background</td><td><code>var(--uif-surface-hover)</code></td></tr>
+    <tr><td><code>--uif-input-error-border</code></td><td>Error state border</td><td><code>var(--uif-danger)</code></td></tr>
+    <tr><td><code>--uif-input-height-sm</code></td><td>Small input height</td><td><code>2rem</code></td></tr>
+    <tr><td><code>--uif-input-height-md</code></td><td>Medium input height</td><td><code>2.5rem</code></td></tr>
+    <tr><td><code>--uif-input-height-lg</code></td><td>Large input height</td><td><code>3rem</code></td></tr>
+  </tbody>
+</table>
+
+### Card
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-card-bg</code></td><td>Card background</td><td><code>var(--uif-surface)</code></td></tr>
+    <tr><td><code>--uif-card-border</code></td><td>Card border color</td><td><code>var(--uif-border)</code></td></tr>
+    <tr><td><code>--uif-card-radius</code></td><td>Card border radius</td><td><code>var(--uif-radius-lg)</code></td></tr>
+    <tr><td><code>--uif-card-shadow</code></td><td>Card shadow</td><td><code>var(--uif-shadow-sm)</code></td></tr>
+    <tr><td><code>--uif-card-padding</code></td><td>Card padding</td><td><code>var(--uif-spacing-6)</code></td></tr>
+  </tbody>
+</table>
+
+### Modal / Dialog
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-modal-bg</code></td><td>Modal background</td><td><code>var(--uif-surface)</code></td></tr>
+    <tr><td><code>--uif-modal-radius</code></td><td>Modal border radius</td><td><code>var(--uif-radius-xl)</code></td></tr>
+    <tr><td><code>--uif-modal-shadow</code></td><td>Modal shadow</td><td><code>var(--uif-shadow-xl)</code></td></tr>
+    <tr><td><code>--uif-modal-padding</code></td><td>Modal padding</td><td><code>var(--uif-spacing-6)</code></td></tr>
+    <tr><td><code>--uif-modal-backdrop-bg</code></td><td>Backdrop color</td><td><code>rgb(0 0 0 / 0.5)</code></td></tr>
+    <tr><td><code>--uif-modal-width-sm</code></td><td>Small modal width</td><td><code>24rem</code></td></tr>
+    <tr><td><code>--uif-modal-width-md</code></td><td>Medium modal width</td><td><code>32rem</code></td></tr>
+    <tr><td><code>--uif-modal-width-lg</code></td><td>Large modal width</td><td><code>48rem</code></td></tr>
+  </tbody>
+</table>
+
+### Tooltip
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-tooltip-bg</code></td><td>Tooltip background</td><td><code>#1f2937</code></td></tr>
+    <tr><td><code>--uif-tooltip-text</code></td><td>Tooltip text color</td><td><code>#ffffff</code></td></tr>
+    <tr><td><code>--uif-tooltip-radius</code></td><td>Tooltip border radius</td><td><code>var(--uif-radius-md)</code></td></tr>
+    <tr><td><code>--uif-tooltip-padding</code></td><td>Tooltip padding</td><td><code>0.5rem 0.75rem</code></td></tr>
+    <tr><td><code>--uif-tooltip-font-size</code></td><td>Tooltip font size</td><td><code>var(--uif-text-sm)</code></td></tr>
+  </tbody>
+</table>
+
+### Badge
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-badge-font-size</code></td><td>Badge font size</td><td><code>var(--uif-text-xs)</code></td></tr>
+    <tr><td><code>--uif-badge-font-weight</code></td><td>Badge font weight</td><td><code>500</code></td></tr>
+    <tr><td><code>--uif-badge-radius</code></td><td>Badge border radius</td><td><code>var(--uif-radius-full)</code></td></tr>
+    <tr><td><code>--uif-badge-padding</code></td><td>Badge padding</td><td><code>0.25rem 0.5rem</code></td></tr>
+  </tbody>
+</table>
+
+### Avatar
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-avatar-bg</code></td><td>Avatar fallback background</td><td><code>var(--uif-secondary)</code></td></tr>
+    <tr><td><code>--uif-avatar-text</code></td><td>Avatar fallback text</td><td><code>var(--uif-secondary-text)</code></td></tr>
+    <tr><td><code>--uif-avatar-radius</code></td><td>Avatar border radius</td><td><code>var(--uif-radius-full)</code></td></tr>
+    <tr><td><code>--uif-avatar-size-sm</code></td><td>Small avatar size</td><td><code>2rem</code></td></tr>
+    <tr><td><code>--uif-avatar-size-md</code></td><td>Medium avatar size</td><td><code>2.5rem</code></td></tr>
+    <tr><td><code>--uif-avatar-size-lg</code></td><td>Large avatar size</td><td><code>3rem</code></td></tr>
+  </tbody>
+</table>
+
+### Alert
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-alert-radius</code></td><td>Alert border radius</td><td><code>var(--uif-radius-md)</code></td></tr>
+    <tr><td><code>--uif-alert-padding</code></td><td>Alert padding</td><td><code>1rem</code></td></tr>
+    <tr><td><code>--uif-alert-icon-size</code></td><td>Alert icon size</td><td><code>1.25rem</code></td></tr>
+  </tbody>
+</table>
+
+### Checkbox & Radio
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-checkbox-size</code></td><td>Checkbox/radio size</td><td><code>1.25rem</code></td></tr>
+    <tr><td><code>--uif-checkbox-radius</code></td><td>Checkbox border radius</td><td><code>var(--uif-radius-sm)</code></td></tr>
+    <tr><td><code>--uif-radio-radius</code></td><td>Radio border radius</td><td><code>var(--uif-radius-full)</code></td></tr>
+    <tr><td><code>--uif-checkbox-border</code></td><td>Unchecked border</td><td><code>var(--uif-border)</code></td></tr>
+    <tr><td><code>--uif-checkbox-checked-bg</code></td><td>Checked background</td><td><code>var(--uif-primary)</code></td></tr>
+    <tr><td><code>--uif-checkbox-checked-text</code></td><td>Checkmark color</td><td><code>#ffffff</code></td></tr>
+  </tbody>
+</table>
+
+### Switch / Toggle
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-switch-width</code></td><td>Switch width</td><td><code>2.75rem</code></td></tr>
+    <tr><td><code>--uif-switch-height</code></td><td>Switch height</td><td><code>1.5rem</code></td></tr>
+    <tr><td><code>--uif-switch-bg</code></td><td>Switch off background</td><td><code>var(--uif-border)</code></td></tr>
+    <tr><td><code>--uif-switch-bg-checked</code></td><td>Switch on background</td><td><code>var(--uif-primary)</code></td></tr>
+    <tr><td><code>--uif-switch-thumb-size</code></td><td>Thumb size</td><td><code>1.25rem</code></td></tr>
+    <tr><td><code>--uif-switch-thumb-bg</code></td><td>Thumb background</td><td><code>#ffffff</code></td></tr>
+  </tbody>
+</table>
+
+### Select / Dropdown
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-select-bg</code></td><td>Select background</td><td><code>var(--uif-background)</code></td></tr>
+    <tr><td><code>--uif-select-border</code></td><td>Select border</td><td><code>var(--uif-border)</code></td></tr>
+    <tr><td><code>--uif-select-radius</code></td><td>Select border radius</td><td><code>var(--uif-radius-md)</code></td></tr>
+    <tr><td><code>--uif-select-menu-bg</code></td><td>Dropdown menu background</td><td><code>var(--uif-surface)</code></td></tr>
+    <tr><td><code>--uif-select-menu-shadow</code></td><td>Dropdown shadow</td><td><code>var(--uif-shadow-lg)</code></td></tr>
+    <tr><td><code>--uif-select-option-hover</code></td><td>Option hover background</td><td><code>var(--uif-surface-hover)</code></td></tr>
+  </tbody>
+</table>
+
+### Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-table-header-bg</code></td><td>Table header background</td><td><code>var(--uif-surface-hover)</code></td></tr>
+    <tr><td><code>--uif-table-border</code></td><td>Table border color</td><td><code>var(--uif-border)</code></td></tr>
+    <tr><td><code>--uif-table-row-hover</code></td><td>Row hover background</td><td><code>var(--uif-surface-hover)</code></td></tr>
+    <tr><td><code>--uif-table-stripe-bg</code></td><td>Striped row background</td><td><code>var(--uif-surface-hover)</code></td></tr>
+    <tr><td><code>--uif-table-cell-padding</code></td><td>Cell padding</td><td><code>0.75rem 1rem</code></td></tr>
+  </tbody>
+</table>
+
+### Tabs
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-tabs-border</code></td><td>Tab border color</td><td><code>var(--uif-border)</code></td></tr>
+    <tr><td><code>--uif-tabs-active-border</code></td><td>Active tab border</td><td><code>var(--uif-primary)</code></td></tr>
+    <tr><td><code>--uif-tabs-active-text</code></td><td>Active tab text</td><td><code>var(--uif-primary)</code></td></tr>
+    <tr><td><code>--uif-tabs-hover-bg</code></td><td>Tab hover background</td><td><code>var(--uif-surface-hover)</code></td></tr>
+  </tbody>
+</table>
+
+### Progress
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-progress-height</code></td><td>Progress bar height</td><td><code>0.5rem</code></td></tr>
+    <tr><td><code>--uif-progress-bg</code></td><td>Progress track background</td><td><code>var(--uif-secondary)</code></td></tr>
+    <tr><td><code>--uif-progress-fill</code></td><td>Progress fill color</td><td><code>var(--uif-primary)</code></td></tr>
+    <tr><td><code>--uif-progress-radius</code></td><td>Progress border radius</td><td><code>var(--uif-radius-full)</code></td></tr>
+  </tbody>
+</table>
+
+### Skeleton
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>--uif-skeleton-bg</code></td><td>Skeleton background</td><td><code>var(--uif-secondary)</code></td></tr>
+    <tr><td><code>--uif-skeleton-shimmer</code></td><td>Shimmer highlight</td><td><code>var(--uif-surface-hover)</code></td></tr>
+    <tr><td><code>--uif-skeleton-radius</code></td><td>Skeleton border radius</td><td><code>var(--uif-radius-md)</code></td></tr>
+  </tbody>
+</table>
+
+---
+
+## Example: Purple Theme
+
+Here's a complete example of a purple theme:
+
+```css
+:root {
+  /* Primary - Purple */
+  --uif-primary: #8b5cf6;
+  --uif-primary-hover: #7c3aed;
+  --uif-primary-active: #6d28d9;
+  --uif-primary-text: #ffffff;
+
+  /* Secondary - Light Purple */
+  --uif-secondary: #f3e8ff;
+  --uif-secondary-hover: #e9d5ff;
+  --uif-secondary-text: #581c87;
+
+  /* Outline variant */
+  --uif-outline-border: #c4b5fd;
+  --uif-outline-text: #6d28d9;
+  --uif-outline-hover: #f5f3ff;
+
+  /* Ghost variant */
+  --uif-ghost-text: #7c3aed;
+  --uif-ghost-hover: #f5f3ff;
+
+  /* Dark mode variants */
+  --uif-secondary-dark: #4c1d95;
+  --uif-secondary-hover-dark: #5b21b6;
+  --uif-secondary-text-dark: #e9d5ff;
+  --uif-outline-border-dark: #7c3aed;
+  --uif-outline-text-dark: #c4b5fd;
+  --uif-outline-hover-dark: #2e1065;
+  --uif-ghost-text-dark: #c4b5fd;
+  --uif-ghost-hover-dark: #2e1065;
+}
+```
+
+## Example: Ocean Theme
+
+```css
+:root {
+  /* Primary - Teal */
+  --uif-primary: #14b8a6;
+  --uif-primary-hover: #0d9488;
+  --uif-primary-active: #0f766e;
+  --uif-primary-text: #ffffff;
+
+  /* Secondary - Light Cyan */
+  --uif-secondary: #ecfeff;
+  --uif-secondary-hover: #cffafe;
+  --uif-secondary-text: #155e75;
+
+  /* Outline variant */
+  --uif-outline-border: #5eead4;
+  --uif-outline-text: #0d9488;
+  --uif-outline-hover: #f0fdfa;
+
+  /* Ghost variant */
+  --uif-ghost-text: #0d9488;
+  --uif-ghost-hover: #f0fdfa;
+}
+```
+
+---
+
+## Dark Mode
+
+UI Forge automatically supports dark mode. Use the `ThemeService` to enable theme switching:
+
+```typescript
+import { Component, inject } from '@angular/core';
+import { ThemeService } from '@ui-forge/angular';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <button (click)="toggleTheme()">
+      {{ themeService.theme() === 'light' ? 'Dark Mode' : 'Light Mode' }}
+    </button>
+  `,
+})
+export class AppComponent {
+  themeService = inject(ThemeService);
+
+  toggleTheme() {
+    const current = this.themeService.theme();
+    this.themeService.setTheme(current === 'light' ? 'dark' : 'light');
+  }
+}
+```
+
+The `ThemeService` sets `data-theme="dark"` on the root element, which activates dark mode CSS variables.
+
+---
+
+## Best Practices
+
+1. **Only override what you need** - Start with the base theme and only change the variables you want to customize.
+
+2. **Use semantic variables** - Reference semantic variables like `--uif-primary` instead of hardcoded colors in your components.
+
+3. **Test both themes** - Always verify your customizations work in both light and dark mode.
+
+4. **Maintain contrast** - Ensure text remains readable against backgrounds (WCAG AA requires 4.5:1 for normal text).
+
+5. **Use the scale** - Stick to the provided spacing, font size, and radius scales for consistency.

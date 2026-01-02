@@ -1,13 +1,20 @@
 /**
  * Button Component (Angular)
  * A versatile button component with multiple variants and sizes
+ *
+ * Theming: Override these CSS variables in your app to customize colors:
+ * --uif-primary, --uif-primary-hover, --uif-primary-text
+ * --uif-secondary, --uif-secondary-hover, --uif-secondary-text
+ * --uif-outline-border, --uif-outline-text, --uif-outline-hover
+ * --uif-ghost-text, --uif-ghost-hover
+ * --uif-danger, --uif-danger-hover, --uif-danger-text
  */
 
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { cn } from '@ui-forge/core';
-import { buttonVariants } from './button.variants';
-import type { ButtonVariants } from './button.variants';
+
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
+type ButtonSize = 'sm' | 'md' | 'lg';
 
 @Component({
   selector: 'uif-button',
@@ -18,70 +25,25 @@ import type { ButtonVariants } from './button.variants';
   encapsulation: ViewEncapsulation.None,
 })
 export class ButtonComponent {
-  /**
-   * Visual style variant
-   */
-  @Input() variant: ButtonVariants['variant'] = 'primary';
-
-  /**
-   * Button size
-   */
-  @Input() size: ButtonVariants['size'] = 'md';
-
-  /**
-   * Full width button
-   */
+  @Input() variant: ButtonVariant = 'primary';
+  @Input() size: ButtonSize = 'md';
   @Input() fullWidth: boolean = false;
-
-  /**
-   * Disabled state
-   */
   @Input() disabled: boolean = false;
-
-  /**
-   * Loading state
-   */
   @Input() loading: boolean = false;
-
-  /**
-   * Button type
-   */
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
 
-  /**
-   * Additional CSS classes
-   */
-  @Input() class: string = '';
-
-  /**
-   * Click event emitter
-   */
   @Output() clicked = new EventEmitter<MouseEvent>();
 
-  /**
-   * Get computed button classes
-   */
-  get buttonClasses(): string {
-    return cn(
-      buttonVariants({
-        variant: this.variant,
-        size: this.size,
-        fullWidth: this.fullWidth,
-      }),
-      this.class
-    );
+  get buttonClass(): string {
+    const classes = ['uif-btn', `uif-btn-${this.variant}`, `uif-btn-${this.size}`];
+    if (this.fullWidth) classes.push('uif-btn-full');
+    return classes.join(' ');
   }
 
-  /**
-   * Check if button is disabled
-   */
   get isDisabled(): boolean {
     return this.disabled || this.loading;
   }
 
-  /**
-   * Handle button click
-   */
   handleClick(event: MouseEvent): void {
     if (!this.isDisabled) {
       this.clicked.emit(event);

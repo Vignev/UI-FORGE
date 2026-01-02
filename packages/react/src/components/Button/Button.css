@@ -1,0 +1,188 @@
+/**
+ * UI Forge Button Component Styles
+ */
+
+/* ============================================
+   Button Base Styles
+   ============================================ */
+
+.uif-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--uif-spacing-2);
+  font-weight: var(--uif-btn-font-weight);
+  border-radius: var(--uif-btn-radius);
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--uif-btn-transition) var(--uif-ease-default),
+              color var(--uif-btn-transition) var(--uif-ease-default),
+              border-color var(--uif-btn-transition) var(--uif-ease-default);
+  font-family: var(--uif-font-family);
+}
+
+.uif-btn:disabled {
+  opacity: var(--uif-btn-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.uif-btn:focus-visible {
+  outline: 2px solid var(--uif-btn-focus-ring);
+  outline-offset: var(--uif-btn-focus-ring-offset);
+}
+
+.uif-btn-spinner {
+  height: 1rem;
+  width: 1rem;
+  animation: uif-spin 1s linear infinite;
+}
+
+.uif-btn-icon-start,
+.uif-btn-icon-end {
+  display: inline-flex;
+  align-items: center;
+}
+
+@keyframes uif-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   Button Sizes
+   ============================================ */
+
+.uif-btn-sm {
+  height: var(--uif-btn-height-sm);
+  padding-left: var(--uif-btn-padding-x-sm);
+  padding-right: var(--uif-btn-padding-x-sm);
+  font-size: var(--uif-btn-font-size-sm);
+}
+
+.uif-btn-md {
+  height: var(--uif-btn-height-md);
+  padding-left: var(--uif-btn-padding-x-md);
+  padding-right: var(--uif-btn-padding-x-md);
+  font-size: var(--uif-btn-font-size-md);
+}
+
+.uif-btn-lg {
+  height: var(--uif-btn-height-lg);
+  padding-left: var(--uif-btn-padding-x-lg);
+  padding-right: var(--uif-btn-padding-x-lg);
+  font-size: var(--uif-btn-font-size-lg);
+}
+
+.uif-btn-full {
+  width: 100%;
+}
+
+/* ============================================
+   Button Variants
+   ============================================ */
+
+/* Primary variant */
+.uif-btn-primary {
+  background-color: var(--uif-primary);
+  color: var(--uif-primary-text);
+}
+.uif-btn-primary:hover:not(:disabled) {
+  background-color: var(--uif-primary-hover);
+}
+.uif-btn-primary:active:not(:disabled) {
+  background-color: var(--uif-primary-active);
+}
+
+/* Secondary variant */
+.uif-btn-secondary {
+  background-color: var(--uif-secondary);
+  color: var(--uif-secondary-text);
+}
+.uif-btn-secondary:hover:not(:disabled) {
+  background-color: var(--uif-secondary-hover);
+}
+.uif-btn-secondary:active:not(:disabled) {
+  background-color: var(--uif-secondary-active);
+}
+
+/* Outline variant */
+.uif-btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--uif-outline-border);
+  color: var(--uif-outline-text);
+}
+.uif-btn-outline:hover:not(:disabled) {
+  background-color: var(--uif-outline-hover);
+}
+
+/* Ghost variant */
+.uif-btn-ghost {
+  background-color: transparent;
+  color: var(--uif-ghost-text);
+}
+.uif-btn-ghost:hover:not(:disabled) {
+  background-color: var(--uif-ghost-hover);
+}
+
+/* Danger variant */
+.uif-btn-danger {
+  background-color: var(--uif-danger);
+  color: var(--uif-danger-text);
+}
+.uif-btn-danger:hover:not(:disabled) {
+  background-color: var(--uif-danger-hover);
+}
+
+/* Success variant */
+.uif-btn-success {
+  background-color: var(--uif-success);
+  color: var(--uif-success-text);
+}
+.uif-btn-success:hover:not(:disabled) {
+  background-color: var(--uif-success-hover);
+}
+
+/* Warning variant */
+.uif-btn-warning {
+  background-color: var(--uif-warning);
+  color: var(--uif-warning-text);
+}
+.uif-btn-warning:hover:not(:disabled) {
+  background-color: var(--uif-warning-hover);
+}
+
+/* Info variant */
+.uif-btn-info {
+  background-color: var(--uif-info);
+  color: var(--uif-info-text);
+}
+.uif-btn-info:hover:not(:disabled) {
+  background-color: var(--uif-info-hover);
+}
+
+/* ============================================
+   Dark Theme Overrides
+   ============================================ */
+
+[data-theme="dark"] .uif-btn-secondary {
+  background-color: var(--uif-secondary-dark);
+  color: var(--uif-secondary-text-dark);
+}
+[data-theme="dark"] .uif-btn-secondary:hover:not(:disabled) {
+  background-color: var(--uif-secondary-hover-dark);
+}
+
+[data-theme="dark"] .uif-btn-outline {
+  border-color: var(--uif-outline-border-dark);
+  color: var(--uif-outline-text-dark);
+}
+[data-theme="dark"] .uif-btn-outline:hover:not(:disabled) {
+  background-color: var(--uif-outline-hover-dark);
+}
+
+[data-theme="dark"] .uif-btn-ghost {
+  color: var(--uif-ghost-text-dark);
+}
+[data-theme="dark"] .uif-btn-ghost:hover:not(:disabled) {
+  background-color: var(--uif-ghost-hover-dark);
+}
