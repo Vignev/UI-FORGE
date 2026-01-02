@@ -1,54 +1,163 @@
 # UI Forge
 
-A cross-framework UI component library supporting both **React** and **Angular** applications.
-
-![CI Status](https://github.com/your-org/ui-forge/workflows/CI/badge.svg)
+A cross-framework UI component library supporting both **React** and **Angular** applications with a unified design system.
 
 ## Features
 
-- 🎨 **Dynamic Theming** - Built-in light/dark mode with customizable CSS variables
-- ♿ **Accessibility First** - WCAG 2.1 AA compliant components
-- 🎯 **Framework Agnostic** - Same design system for React and Angular
-- 🎭 **Flexible Variants** - Powered by Class Variance Authority (CVA)
-- 🚀 **Modern Stack** - TypeScript, Tailwind CSS v4, Vite
-- 📚 **Well Documented** - Comprehensive Storybook documentation
-- 🧪 **Fully Tested** - Unit tests with 80%+ coverage
+- Unified design system across React and Angular
+- CSS custom properties for easy theming
+- Light and dark mode support
+- Accessible components (WCAG 2.1 AA)
+- Comprehensive Storybook documentation
+- TypeScript support
 
-## Packages
+## Prerequisites
 
-| Package | Description | Version |
-|---------|-------------|---------|
-| [@ui-forge/tokens](./packages/tokens) | Design tokens and CSS variables | 0.1.0 |
-| [@ui-forge/core](./packages/core) | Core utilities and theme management | 0.1.0 |
-| [@ui-forge/react](./packages/react) | React components | 0.1.0 |
-| [@ui-forge/angular](./packages/angular) | Angular components | 0.1.0 |
+- Node.js v20 or higher
+- npm v10 or higher
 
 ## Quick Start
 
-### React
+### 1. Clone and Install
 
 ```bash
-npm install @ui-forge/react @ui-forge/tokens
+# Clone the repository
+git clone <repository-url>
+cd UI-FORGE
+
+# Install dependencies
+npm install --legacy-peer-deps
 ```
 
+### 2. Build the Libraries
+
+```bash
+# Build React library
+npm run build:react
+
+# Build Angular library
+npm run build:angular
+```
+
+### 3. Run Storybook
+
+```bash
+# Start React Storybook (opens at http://localhost:6006)
+npm run storybook:react
+
+# In a separate terminal, start Angular Storybook (opens at http://localhost:6007)
+npm run storybook:angular
+```
+
+## Project Structure
+
+```
+UI-FORGE/
+├── packages/
+│   ├── react/                 # React component library (@ui-forge/react)
+│   │   ├── src/
+│   │   │   ├── components/    # React components (Button, etc.)
+│   │   │   └── styles/        # CSS variables (ui-forge.css)
+│   │   └── dist/              # Built library output
+│   │
+│   ├── angular/               # Angular component library (@ui-forge/angular)
+│   │   ├── src/
+│   │   │   ├── lib/           # Angular components (button/, etc.)
+│   │   │   └── styles/        # CSS variables (ui-forge.css)
+│   │   └── dist/              # Built library output
+│   │
+│   └── docs/
+│       ├── react/             # React Storybook
+│       │   └── stories/       # React component stories
+│       └── angular/           # Angular Storybook
+│           └── stories/       # Angular component stories
+│
+└── package.json               # Root monorepo configuration
+```
+
+## Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run build:react` | Build the React library |
+| `npm run build:angular` | Build the Angular library |
+| `npm run storybook:react` | Start React Storybook on port 6006 |
+| `npm run storybook:angular` | Start Angular Storybook on port 6007 |
+
+## Using the Libraries
+
+### React
+
+1. **Install the package:**
+```bash
+npm install @ui-forge/react
+```
+
+2. **Import the CSS in your app's entry file:**
 ```tsx
-import { ThemeProvider, Button } from '@ui-forge/react';
+import '@ui-forge/react/styles/ui-forge.css';
+```
+
+3. **Use the components:**
+```tsx
+import { Button, ThemeProvider } from '@ui-forge/react';
 
 function App() {
   return (
-    <ThemeProvider>
-      <Button variant="primary">Click me</Button>
+    <ThemeProvider defaultTheme="light">
+      <Button variant="primary" size="md">
+        Click Me
+      </Button>
     </ThemeProvider>
   );
 }
 ```
 
-### Angular
+4. **Button with icons:**
+```tsx
+<Button
+  variant="primary"
+  startIcon={<ArrowRightIcon />}
+>
+  Next
+</Button>
 
-```bash
-npm install @ui-forge/angular @ui-forge/tokens
+<Button
+  variant="secondary"
+  endIcon={<ArrowLeftIcon />}
+>
+  Back
+</Button>
 ```
 
+### Angular
+
+1. **Install the package:**
+```bash
+npm install @ui-forge/angular
+```
+
+2. **Add the CSS to your `angular.json`:**
+```json
+{
+  "projects": {
+    "your-app": {
+      "architect": {
+        "build": {
+          "options": {
+            "styles": [
+              "node_modules/@ui-forge/angular/styles/ui-forge.css",
+              "src/styles.css"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+3. **Import and use the components:**
 ```typescript
 import { Component } from '@angular/core';
 import { ButtonComponent } from '@ui-forge/angular';
@@ -57,171 +166,121 @@ import { ButtonComponent } from '@ui-forge/angular';
   selector: 'app-root',
   standalone: true,
   imports: [ButtonComponent],
-  template: `<uif-button variant="primary">Click me</uif-button>`,
+  template: `
+    <uif-button variant="primary" size="md">
+      Click Me
+    </uif-button>
+  `
 })
 export class AppComponent {}
 ```
 
-## Development
+4. **Button with icons:**
+```html
+<uif-button variant="primary">
+  <svg startIcon width="16" height="16" viewBox="0 0 24 24">
+    <!-- icon path -->
+  </svg>
+  Next
+</uif-button>
 
-### Prerequisites
-
-- Node.js >= 18.0.0
-- npm >= 9.0.0
-
-### Setup
-
-```bash
-# Clone repository
-git clone <repo-url>
-cd ui-forge
-
-# Install dependencies
-npm install
-
-# Build tokens (required first)
-npm run build:tokens
-
-# Start Storybook
-npm run storybook
+<uif-button variant="secondary">
+  Back
+  <svg endIcon width="16" height="16" viewBox="0 0 24 24">
+    <!-- icon path -->
+  </svg>
+</uif-button>
 ```
 
-### Development Commands
+## Components
 
-```bash
-# Watch mode for specific package
-npm run dev -w @ui-forge/react
+### Button
 
-# Run tests
-npm run test
+A versatile button component with multiple variants and sizes.
 
-# Run tests for specific package
-npm run test -w @ui-forge/react
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `variant` | `'primary'` \| `'secondary'` \| `'outline'` \| `'ghost'` \| `'danger'` | `'primary'` | Visual style |
+| `size` | `'sm'` \| `'md'` \| `'lg'` | `'md'` | Button size |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `loading` | `boolean` | `false` | Loading spinner |
+| `fullWidth` | `boolean` | `false` | Full width button |
 
-# Lint all packages
-npm run lint
+**React only:**
+- `startIcon` - ReactNode for icon before text
+- `endIcon` - ReactNode for icon after text
 
-# Fix linting issues
-npm run lint:fix
-
-# Format code
-npm run format
-
-# Build all packages
-npm run build
-
-# Type check
-npm run typecheck
-```
-
-## Repository Structure
-
-```
-ui-forge/
-├── packages/
-│   ├── tokens/          # Design tokens and CSS variables
-│   ├── core/            # Core utilities and theme management
-│   ├── react/           # React components
-│   ├── angular/         # Angular components
-│   └── docs/            # Storybook documentation
-├── apps/                # Demo applications
-│   ├── react-demo/
-│   └── angular-demo/
-└── tools/               # Build tools and utilities
-```
-
-## Component Status
-
-### Phase 0 (Completed)
-- ✅ Base architecture and monorepo setup
-- ✅ Design tokens package
-- ✅ Core utilities package
-- ✅ React package with Vite
-- ✅ Angular package with ng-packagr
-- ✅ Tailwind CSS v4 integration
-- ✅ Storybook setup
-- ✅ Sample Button component (React & Angular)
-- ✅ CI/CD pipeline
-
-### Phase 1 (Planned)
-- Button, IconButton, ButtonGroup
-- Input, Textarea
-- Select
-- Checkbox, Radio, Switch
-- Card, Divider
-
-### Phase 2 (Planned)
-- DataTable (stateful + headless)
-- Alert
-- Toast/Snackbar
-- Badge, Chip, Avatar
-- Progress, Spinner, Skeleton
-
-### Phase 3 (Planned)
-- Modal/Dialog
-- Drawer
-- Tabs, Accordion
-- Dropdown, Popover
-- Breadcrumb, Pagination
+**Angular only:**
+- Use `startIcon` attribute on element projected before text
+- Use `endIcon` attribute on element projected after text
 
 ## Theming
 
-UI Forge uses CSS custom properties for theming. All components support light and dark modes out of the box.
-
-### Using Themes
-
-```tsx
-// React
-import { ThemeProvider } from '@ui-forge/react';
-
-function App() {
-  return (
-    <ThemeProvider defaultTheme="dark">
-      {/* Your app */}
-    </ThemeProvider>
-  );
-}
-```
-
-```typescript
-// Angular
-import { ThemeService } from '@ui-forge/angular';
-
-export class AppComponent {
-  constructor(private themeService: ThemeService) {
-    this.themeService.setTheme('dark');
-  }
-}
-```
-
-### Customizing Tokens
+UI Forge uses CSS custom properties for theming. Override variables in your app:
 
 ```css
 :root {
-  --uif-primary-500: 220 38 38;  /* Custom red primary */
-  --uif-radius-base: 0;           /* Square corners */
+  /* Brand Colors */
+  --uif-primary: #your-color;
+  --uif-primary-hover: #your-hover-color;
+  --uif-primary-text: #ffffff;
+
+  /* More variables available - see Storybook Theming docs */
 }
 ```
 
-## Contributing
+### Dark Mode
 
-We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md) for details.
+Add `data-theme="dark"` to your root element:
 
-### Development Workflow
+```html
+<html data-theme="dark">
+```
 
-1. Create feature branch from `develop`
-2. Implement component following our standards
-3. Ensure tests pass and coverage is 80%+
-4. Create PR with description and screenshots
-5. Request review (minimum 1 approval)
-6. Squash and merge to `develop`
+Or use the ThemeProvider (React) / ThemeService (Angular) for programmatic control.
+
+## Troubleshooting
+
+### Installation Issues
+
+If you encounter peer dependency conflicts:
+```bash
+npm install --legacy-peer-deps
+```
+
+### Changes Not Reflecting in Storybook
+
+1. Rebuild the library:
+```bash
+npm run build:react   # or npm run build:angular
+```
+
+2. Restart the Storybook server
+
+### CSS Not Loading
+
+Ensure you've imported the base CSS:
+- **React:** `import '@ui-forge/react/styles/ui-forge.css'`
+- **Angular:** Add to `angular.json` styles array
+
+## Development Workflow
+
+### Adding a New Component
+
+1. Create component in `packages/react/src/components/YourComponent/`
+2. Create component in `packages/angular/src/lib/your-component/`
+3. Add component CSS to respective folders
+4. Export from package `index.ts` files
+5. Create Storybook stories in `packages/docs/`
+6. Rebuild libraries and test in Storybook
+
+### Building for Production
+
+```bash
+# Build both libraries
+npm run build:react && npm run build:angular
+```
 
 ## License
 
-MIT © UI Forge Team
-
-## Support
-
-- [Documentation](https://ui-forge.dev)
-- [GitHub Issues](https://github.com/your-org/ui-forge/issues)
-- [Discord Community](https://discord.gg/ui-forge)
+MIT
