@@ -3,7 +3,7 @@
  * A versatile button component with multiple variants and sizes
  */
 
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { cn } from '@ui-forge/core';
 import { buttonVariants } from './button.variants';
@@ -15,6 +15,7 @@ import type { ButtonVariants } from './button.variants';
   imports: [CommonModule],
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class ButtonComponent {
   /**
