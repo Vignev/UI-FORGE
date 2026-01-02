@@ -1,0 +1,68 @@
+<div class="min-h-screen bg-background p-8">
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="flex justify-between items-center">
+      <div></div>
+      <uif-button variant="outline" size="sm" (clicked)="toggleTheme()">
+        {{ themeService.theme() === 'light' ? '🌙 Dark' : '☀️ Light' }}
+      </uif-button>
+    </div>
+
+    <div class="space-y-12">
+      <!-- Header -->
+      <div class="text-center">
+        <h1 class="text-4xl font-bold mb-2 text-foreground">UI Forge</h1>
+        <p class="text-muted-foreground">
+          Cross-framework UI Component Library - Angular
+        </p>
+      </div>
+
+      <!-- Variants Section -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-semibold text-foreground">Button Variants</h2>
+        <div class="flex flex-wrap gap-4">
+          <uif-button variant="primary">Primary</uif-button>
+          <uif-button variant="secondary">Secondary</uif-button>
+          <uif-button variant="outline">Outline</uif-button>
+          <uif-button variant="ghost">Ghost</uif-button>
+          <uif-button variant="danger">Danger</uif-button>
+        </div>
+      </section>
+
+      <!-- Sizes Section -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-semibold text-foreground">Button Sizes</h2>
+        <div class="flex flex-wrap items-center gap-4">
+          <uif-button size="sm">Small</uif-button>
+          <uif-button size="md">Medium</uif-button>
+          <uif-button size="lg">Large</uif-button>
+        </div>
+      </section>
+
+      <!-- States Section -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-semibold text-foreground">Button States</h2>
+        <div class="flex flex-wrap gap-4">
+          <uif-button [disabled]="true">Disabled</uif-button>
+          <uif-button [loading]="true">Loading</uif-button>
+          <uif-button variant="outline" [disabled]="true">Disabled Outline</uif-button>
+        </div>
+      </section>
+
+      <!-- Full Width Section -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-semibold text-foreground">Full Width</h2>
+        <uif-button [fullWidth]="true">Full Width Button</uif-button>
+        <uif-button variant="outline" [fullWidth]="true">Full Width Outline</uif-button>
+      </section>
+
+      <!-- Interactive Section -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-semibold text-foreground">Interactive</h2>
+        <div class="flex flex-wrap gap-4">
+          <uif-button (clicked)="handleClick()">Click Me</uif-button>
+          <uif-button variant="danger" (clicked)="handleConfirm()">Confirm Action</uif-button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

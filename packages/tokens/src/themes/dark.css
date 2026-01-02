@@ -1,0 +1,38 @@
+/**
+ * UI Forge Dark Theme
+ * Dark mode color scheme with adjusted semantic tokens
+ */
+
+[data-theme='dark'] {
+  --uif-background: 15 23 42;
+  --uif-foreground: 250 250 250;
+  --uif-card: 30 41 59;
+  --uif-card-foreground: 250 250 250;
+  --uif-popover: 30 41 59;
+  --uif-popover-foreground: 250 250 250;
+  --uif-muted: 51 65 85;
+  --uif-muted-foreground: 203 213 225;
+  --uif-accent: 51 65 85;
+  --uif-accent-foreground: 250 250 250;
+  --uif-border: 51 65 85;
+  --uif-input: 51 65 85;
+  --uif-ring: 147 197 253;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --uif-background: 15 23 42;
+    --uif-foreground: 250 250 250;
+    --uif-card: 30 41 59;
+    --uif-card-foreground: 250 250 250;
+    --uif-popover: 30 41 59;
+    --uif-popover-foreground: 250 250 250;
+    --uif-muted: 51 65 85;
+    --uif-muted-foreground: 203 213 225;
+    --uif-accent: 51 65 85;
+    --uif-accent-foreground: 250 250 250;
+    --uif-border: 51 65 85;
+    --uif-input: 51 65 85;
+    --uif-ring: 147 197 253;
+  }
+}

@@ -1,0 +1,21 @@
+/**
+ * UI Forge Light Theme
+ * Default light mode color scheme
+ */
+
+:root,
+[data-theme='light'] {
+  --uif-background: 255 255 255;
+  --uif-foreground: 23 23 23;
+  --uif-card: 255 255 255;
+  --uif-card-foreground: 23 23 23;
+  --uif-popover: 255 255 255;
+  --uif-popover-foreground: 23 23 23;
+  --uif-muted: 245 245 245;
+  --uif-muted-foreground: 115 115 115;
+  --uif-accent: 245 245 245;
+  --uif-accent-foreground: 23 23 23;
+  --uif-border: 229 229 229;
+  --uif-input: 229 229 229;
+  --uif-ring: 59 130 246;
+}

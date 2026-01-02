@@ -1,0 +1,151 @@
+/**
+ * UI Forge Design Tokens
+ * Base CSS custom properties using RGB values for opacity support
+ * Format: --uif-{category}-{name}: R G B;
+ */
+
+:root {
+  /* Primary Colors */
+  --uif-primary-50: 239 246 255;
+  --uif-primary-100: 219 234 254;
+  --uif-primary-200: 191 219 254;
+  --uif-primary-300: 147 197 253;
+  --uif-primary-400: 96 165 250;
+  --uif-primary-500: 59 130 246;
+  --uif-primary-600: 37 99 235;
+  --uif-primary-700: 29 78 216;
+  --uif-primary-800: 30 64 175;
+  --uif-primary-900: 30 58 138;
+  --uif-primary-950: 23 37 84;
+
+  /* Secondary Colors */
+  --uif-secondary-50: 248 250 252;
+  --uif-secondary-100: 241 245 249;
+  --uif-secondary-200: 226 232 240;
+  --uif-secondary-300: 203 213 225;
+  --uif-secondary-400: 148 163 184;
+  --uif-secondary-500: 100 116 139;
+  --uif-secondary-600: 71 85 105;
+  --uif-secondary-700: 51 65 85;
+  --uif-secondary-800: 30 41 59;
+  --uif-secondary-900: 15 23 42;
+  --uif-secondary-950: 2 6 23;
+
+  /* Success Colors */
+  --uif-success-50: 240 253 244;
+  --uif-success-100: 220 252 231;
+  --uif-success-200: 187 247 208;
+  --uif-success-300: 134 239 172;
+  --uif-success-400: 74 222 128;
+  --uif-success-500: 34 197 94;
+  --uif-success-600: 22 163 74;
+  --uif-success-700: 21 128 61;
+  --uif-success-800: 22 101 52;
+  --uif-success-900: 20 83 45;
+  --uif-success-950: 5 46 22;
+
+  /* Warning Colors */
+  --uif-warning-50: 255 251 235;
+  --uif-warning-100: 254 243 199;
+  --uif-warning-200: 253 230 138;
+  --uif-warning-300: 252 211 77;
+  --uif-warning-400: 251 191 36;
+  --uif-warning-500: 245 158 11;
+  --uif-warning-600: 217 119 6;
+  --uif-warning-700: 180 83 9;
+  --uif-warning-800: 146 64 14;
+  --uif-warning-900: 120 53 15;
+  --uif-warning-950: 69 26 3;
+
+  /* Danger Colors */
+  --uif-danger-50: 254 242 242;
+  --uif-danger-100: 254 226 226;
+  --uif-danger-200: 254 202 202;
+  --uif-danger-300: 252 165 165;
+  --uif-danger-400: 248 113 113;
+  --uif-danger-500: 239 68 68;
+  --uif-danger-600: 220 38 38;
+  --uif-danger-700: 185 28 28;
+  --uif-danger-800: 153 27 27;
+  --uif-danger-900: 127 29 29;
+  --uif-danger-950: 69 10 10;
+
+  /* Neutral Colors */
+  --uif-neutral-50: 250 250 250;
+  --uif-neutral-100: 245 245 245;
+  --uif-neutral-200: 229 229 229;
+  --uif-neutral-300: 212 212 212;
+  --uif-neutral-400: 163 163 163;
+  --uif-neutral-500: 115 115 115;
+  --uif-neutral-600: 82 82 82;
+  --uif-neutral-700: 64 64 64;
+  --uif-neutral-800: 38 38 38;
+  --uif-neutral-900: 23 23 23;
+  --uif-neutral-950: 10 10 10;
+
+  /* Semantic Tokens */
+  --uif-background: 255 255 255;
+  --uif-foreground: 23 23 23;
+  --uif-card: 255 255 255;
+  --uif-card-foreground: 23 23 23;
+  --uif-popover: 255 255 255;
+  --uif-popover-foreground: 23 23 23;
+  --uif-muted: 245 245 245;
+  --uif-muted-foreground: 115 115 115;
+  --uif-accent: 245 245 245;
+  --uif-accent-foreground: 23 23 23;
+  --uif-border: 229 229 229;
+  --uif-input: 229 229 229;
+  --uif-ring: 59 130 246;
+
+  /* Typography */
+  --uif-font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --uif-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Spacing Scale (in px) */
+  --uif-spacing-0: 0;
+  --uif-spacing-1: 4;
+  --uif-spacing-2: 8;
+  --uif-spacing-3: 12;
+  --uif-spacing-4: 16;
+  --uif-spacing-5: 20;
+  --uif-spacing-6: 24;
+  --uif-spacing-8: 32;
+  --uif-spacing-10: 40;
+  --uif-spacing-12: 48;
+  --uif-spacing-16: 64;
+  --uif-spacing-20: 80;
+  --uif-spacing-24: 96;
+
+  /* Border Radius */
+  --uif-radius-none: 0;
+  --uif-radius-sm: 0.125rem;
+  --uif-radius-base: 0.25rem;
+  --uif-radius-md: 0.375rem;
+  --uif-radius-lg: 0.5rem;
+  --uif-radius-xl: 0.75rem;
+  --uif-radius-2xl: 1rem;
+  --uif-radius-full: 9999px;
+
+  /* Shadows */
+  --uif-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --uif-shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --uif-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --uif-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --uif-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --uif-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  /* Transitions */
+  --uif-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --uif-transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --uif-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Z-Index Scale */
+  --uif-z-dropdown: 1000;
+  --uif-z-sticky: 1020;
+  --uif-z-fixed: 1030;
+  --uif-z-modal-backdrop: 1040;
+  --uif-z-modal: 1050;
+  --uif-z-popover: 1060;
+  --uif-z-tooltip: 1070;
+}

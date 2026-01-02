@@ -1,0 +1,30 @@
+{
+  "name": "@ui-forge/tokens",
+  "version": "0.1.0",
+  "description": "Design tokens for UI Forge component library",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./tokens.css": "./src/tokens.css",
+    "./themes/*": "./src/themes/*.css",
+    "./tailwind.preset": "./src/tailwind.preset.js"
+  },
+  "files": [
+    "dist",
+    "src/**/*.css",
+    "src/tailwind.preset.js"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": ["design-tokens", "css-variables", "theming"],
+  "license": "MIT"
+}

@@ -1,0 +1,118 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  /* UI Forge Design Tokens */
+  :root {
+    --uif-primary-50: 239 246 255;
+    --uif-primary-100: 219 234 254;
+    --uif-primary-200: 191 219 254;
+    --uif-primary-300: 147 197 253;
+    --uif-primary-400: 96 165 250;
+    --uif-primary-500: 59 130 246;
+    --uif-primary-600: 37 99 235;
+    --uif-primary-700: 29 78 216;
+    --uif-primary-800: 30 64 175;
+    --uif-primary-900: 30 58 138;
+    --uif-primary-950: 23 37 84;
+
+    --uif-secondary-50: 248 250 252;
+    --uif-secondary-100: 241 245 249;
+    --uif-secondary-200: 226 232 240;
+    --uif-secondary-300: 203 213 225;
+    --uif-secondary-400: 148 163 184;
+    --uif-secondary-500: 100 116 139;
+    --uif-secondary-600: 71 85 105;
+    --uif-secondary-700: 51 65 85;
+    --uif-secondary-800: 30 41 59;
+    --uif-secondary-900: 15 23 42;
+    --uif-secondary-950: 2 6 23;
+
+    --uif-danger-50: 254 242 242;
+    --uif-danger-100: 254 226 226;
+    --uif-danger-200: 254 202 202;
+    --uif-danger-300: 252 165 165;
+    --uif-danger-400: 248 113 113;
+    --uif-danger-500: 239 68 68;
+    --uif-danger-600: 220 38 38;
+    --uif-danger-700: 185 28 28;
+    --uif-danger-800: 153 27 27;
+    --uif-danger-900: 127 29 29;
+    --uif-danger-950: 69 10 10;
+
+    --uif-background: 255 255 255;
+    --uif-foreground: 23 23 23;
+    --uif-border: 229 229 229;
+    --uif-accent: 245 245 245;
+    --uif-ring: 59 130 246;
+    --uif-font-sans: ui-sans-serif, system-ui, sans-serif;
+  }
+
+  [data-theme='dark'] {
+    --uif-background: 23 23 23;
+    --uif-foreground: 250 250 250;
+    --uif-border: 64 64 64;
+    --uif-accent: 38 38 38;
+  }
+
+  /* Utility classes */
+  .h-8 { height: 2rem; }
+  .h-10 { height: 2.5rem; }
+  .h-12 { height: 3rem; }
+  .h-4 { height: 1rem; }
+  .w-4 { width: 1rem; }
+  .w-full { width: 100%; }
+  .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+  .px-4 { padding-left: 1rem; padding-right: 1rem; }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .mr-2 { margin-right: 0.5rem; }
+  .ml-2 { margin-left: 0.5rem; }
+  .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+  .text-base { font-size: 1rem; line-height: 1.5rem; }
+  .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+  .text-white { color: rgb(255 255 255); }
+  .font-medium { font-weight: 500; }
+  .rounded-md { border-radius: 0.375rem; }
+  .rounded-lg { border-radius: 0.5rem; }
+  .inline-flex { display: inline-flex; }
+  .items-center { align-items: center; }
+  .justify-center { justify-content: center; }
+  .transition-colors {
+    transition-property: color, background-color, border-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+  .focus-visible\:outline-none:focus-visible { outline: none; }
+  .focus-visible\:ring-2:focus-visible { box-shadow: 0 0 0 2px rgb(var(--uif-ring)); }
+  .disabled\:pointer-events-none:disabled { pointer-events: none; }
+  .disabled\:opacity-50:disabled { opacity: 0.5; }
+  .bg-transparent { background-color: transparent; }
+  .opacity-25 { opacity: 0.25; }
+  .opacity-75 { opacity: 0.75; }
+  .animate-spin { animation: spin 1s linear infinite; }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Button variants */
+  .btn-primary { background-color: rgb(var(--uif-primary-500)); }
+  .btn-primary:hover { background-color: rgb(var(--uif-primary-600)); }
+  .btn-primary:active { background-color: rgb(var(--uif-primary-700)); }
+
+  .btn-secondary { background-color: rgb(var(--uif-secondary-100)); color: rgb(var(--uif-secondary-900)); }
+  .btn-secondary:hover { background-color: rgb(var(--uif-secondary-200)); }
+  .btn-secondary:active { background-color: rgb(var(--uif-secondary-300)); }
+
+  .btn-outline { background-color: transparent; border: 1px solid rgb(var(--uif-border)); color: rgb(var(--uif-foreground)); }
+  .btn-outline:hover { background-color: rgb(var(--uif-accent)); }
+
+  .btn-ghost { background-color: transparent; color: rgb(var(--uif-foreground)); }
+  .btn-ghost:hover { background-color: rgb(var(--uif-accent)); }
+
+  .btn-danger { background-color: rgb(var(--uif-danger-500)); }
+  .btn-danger:hover { background-color: rgb(var(--uif-danger-600)); }
+  .btn-danger:active { background-color: rgb(var(--uif-danger-700)); }
+
+  button { border: none; cursor: pointer; }
+  body { font-family: var(--uif-font-sans); }
+</style>

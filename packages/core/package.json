@@ -1,0 +1,34 @@
+{
+  "name": "@ui-forge/core",
+  "version": "0.1.0",
+  "description": "Core utilities and theme management for UI Forge",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@ui-forge/tokens": "*",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.5"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.8"
+  },
+  "keywords": ["utilities", "theme", "accessibility"],
+  "license": "MIT"
+}

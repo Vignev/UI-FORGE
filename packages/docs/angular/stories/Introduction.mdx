@@ -1,0 +1,98 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction/Welcome" />
+
+# UI Forge for Angular
+
+Welcome to the **Angular** component library for UI Forge - a cross-framework UI component library with consistent design across React and Angular.
+
+## Features
+
+- **Angular 18+** - Built with standalone components and modern Angular patterns
+- **TypeScript** - Full type safety with comprehensive type definitions
+- **Tailwind CSS v4** - Utility-first styling with design tokens
+- **Signals** - Reactive state management using Angular signals
+- **Accessibility** - WCAG 2.1 AA compliant components
+- **Theming** - Built-in light/dark mode with customizable tokens
+
+## Installation
+
+```bash
+npm install @ui-forge/angular @ui-forge/tokens
+```
+
+## Quick Start
+
+Import components directly into your standalone components:
+
+```typescript
+import { Component } from '@angular/core';
+import { ButtonComponent } from '@ui-forge/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [ButtonComponent],
+  template: `
+    <uif-button variant="primary">Click me</uif-button>
+  `,
+})
+export class AppComponent {}
+```
+
+## Theme Service
+
+Use the `ThemeService` to manage theme state across your application:
+
+```typescript
+import { Component, inject } from '@angular/core';
+import { ThemeService } from '@ui-forge/angular';
+
+@Component({
+  selector: 'app-theme-toggle',
+  template: `
+    <button (click)="toggleTheme()">
+      Current: {{ themeService.theme() }}
+    </button>
+  `,
+})
+export class ThemeToggleComponent {
+  themeService = inject(ThemeService);
+
+  toggleTheme() {
+    const current = this.themeService.theme();
+    this.themeService.setTheme(current === 'light' ? 'dark' : 'light');
+  }
+}
+```
+
+## Component Prefix
+
+All UI Forge Angular components use the `uif-` prefix:
+
+```html
+<uif-button>Button</uif-button>
+<uif-input placeholder="Enter text" />
+<uif-card>Card content</uif-card>
+```
+
+## Available Components
+
+Browse the sidebar to explore all available Angular components with live examples and documentation.
+
+## Package Structure
+
+- **@ui-forge/tokens** - Design tokens and CSS variables
+- **@ui-forge/core** - Shared utilities and theme management
+- **@ui-forge/angular** - Angular components (this package)
+
+## Theming
+
+Customize the design system using CSS custom properties:
+
+```css
+:root {
+  --uif-primary-500: 59 130 246;
+  --uif-background: 255 255 255;
+}
+```

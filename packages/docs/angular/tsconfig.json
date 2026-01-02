@@ -1,0 +1,21 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "types": ["node"],
+    "experimentalDecorators": true,
+    "composite": false,
+    "declaration": false,
+    "paths": {
+      "@ui-forge/tokens": ["../../tokens/src"],
+      "@ui-forge/core": ["../../core/src"],
+      "@ui-forge/angular": ["../../angular/src"]
+    }
+  },
+  "include": [
+    "stories/**/*",
+    ".storybook/**/*",
+    "src/**/*"
+  ]
+}

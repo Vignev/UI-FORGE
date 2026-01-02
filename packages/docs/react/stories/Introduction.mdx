@@ -1,0 +1,77 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction/Welcome" />
+
+# UI Forge for React
+
+Welcome to the **React** component library for UI Forge - a cross-framework UI component library with consistent design across React and Angular.
+
+## Features
+
+- **React 18+** - Built for modern React with hooks and functional components
+- **TypeScript** - Full type safety with comprehensive type definitions
+- **Tailwind CSS v4** - Utility-first styling with design tokens
+- **Vite** - Lightning-fast development experience
+- **Accessibility** - WCAG 2.1 AA compliant components
+- **Theming** - Built-in light/dark mode with customizable tokens
+
+## Installation
+
+```bash
+npm install @ui-forge/react @ui-forge/tokens
+```
+
+## Quick Start
+
+Wrap your application with the `ThemeProvider` and start using components:
+
+```tsx
+import { ThemeProvider, Button } from '@ui-forge/react';
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light">
+      <Button variant="primary">Click me</Button>
+    </ThemeProvider>
+  );
+}
+```
+
+## Theme Provider
+
+The `ThemeProvider` manages theme state and provides theme context to all components:
+
+```tsx
+import { ThemeProvider, useTheme } from '@ui-forge/react';
+
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+      Toggle Theme
+    </button>
+  );
+}
+```
+
+## Available Components
+
+Browse the sidebar to explore all available React components with live examples and documentation.
+
+## Package Structure
+
+- **@ui-forge/tokens** - Design tokens and CSS variables
+- **@ui-forge/core** - Shared utilities and theme management
+- **@ui-forge/react** - React components (this package)
+
+## Theming
+
+Customize the design system using CSS custom properties:
+
+```css
+:root {
+  --uif-primary-500: 59 130 246;
+  --uif-background: 255 255 255;
+}
+```

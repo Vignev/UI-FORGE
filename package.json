@@ -1,0 +1,52 @@
+{
+  "name": "ui-forge-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Cross-framework UI component library for Angular and React",
+  "workspaces": [
+    "packages/*",
+    "packages/docs/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "build:tokens": "npm run build -w @ui-forge/tokens",
+    "build:core": "npm run build -w @ui-forge/core",
+    "build:react": "npm run build -w @ui-forge/react",
+    "build:angular": "npm run build -w @ui-forge/angular",
+    "dev": "npm run dev --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "storybook:react": "npm run storybook -w @ui-forge/docs-react",
+    "storybook:angular": "npm run storybook -w @ui-forge/docs-angular",
+    "build-storybook:react": "npm run build -w @ui-forge/docs-react",
+    "build-storybook:angular": "npm run build -w @ui-forge/docs-angular",
+    "clean": "rm -rf node_modules packages/*/node_modules packages/*/dist apps/*/node_modules",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@types/node": "^22.9.3",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "eslint": "^9.15.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "prettier": "^3.3.3",
+    "typescript": "~5.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "overrides": {
+    "@ui-forge/angular": {
+      "typescript": "~5.5.0"
+    },
+    "ajv": "^8.17.1"
+  }
+}
